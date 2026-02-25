@@ -5,7 +5,7 @@ from api.routes.dependencies import get_db, get_current_user
 from core.security import (
     verify_password,
     get_password_hash,
-    create_acess_token
+    create_access_token
 )
 from db.models import User
 from schemas.user import UserCreate, UserOut
@@ -47,8 +47,8 @@ def login(
             detail="Invalid email or password",
         )
     
-    access_token = create_acess_token(subject=user.email)
-    return Token(acess_token=access_token)
+    access_token = create_access_token(subject=user.email)
+    return Token(access_token=access_token)
 
 @router.get("/me", response_model=UserOut)
 def read_me(current_user: User = Depends(get_current_user)):
